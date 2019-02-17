@@ -1,0 +1,7 @@
+<h3 class="text-primary text-center">Details</h3>
+<div *ngIf="document" class="container">
+	<h2>{{document.docName}}</h2>
+		<button type="button" class="btn btn-info" (click)="downloadDocument()">Download</button>
+		<button type="button" class="btn btn-primary" (click)="updateDocument()">Update</button>
+	<button type="button" class="btn btn-danger" (click)="deleteDocument()">Delete</button>
+</div>

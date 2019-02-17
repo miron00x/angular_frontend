@@ -1,0 +1,29 @@
+<h3 class="text-primary text-center">Documents</h3>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+		<th scope="col">#</th>
+		<th scope="col" sortable="docName" (sort)="onSort($event)">Name</th>
+		<th scope="col">User</th>
+		<th scope="col" sortable="uploadDate" (sort)="onSort($event)">UploadDate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let document of documents" (click)="documentDetails(document)">
+			<th scope="row">{{ document.id }}</th>
+			<td><ngb-highlight [result]="document.docName"></ngb-highlight></td>
+			<td><ngb-highlight [result]="document.user.userName"></ngb-highlight></td>
+			<td><ngb-highlight [result]="document.uploadDate | date"></ngb-highlight></td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+	<ngb-pagination
+	(pageChange)="onPageChange($event)" [collectionSize]="total" [(page)]="page" [pageSize]="pageSize">
+	</ngb-pagination>
+</div>
+ 
+<div>
+  <button type="button" class="button btn-danger" (click)='deleteDocuments()'>Delete All</button>
+</div>
