@@ -9,6 +9,8 @@ import {DecimalPipe} from '@angular/common';
 import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
 import {SortDirection} from '../documents-list/sortable.directive';
 
+import { Document } from '../models/document';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +54,11 @@ export class DocumentService {
 		};
 		const req = new HttpRequest('PUT', `${this.baseUrl}/${id}`, formData, httpOptions);
 		return this.http.request(req);
+	}
+	
+	upDocProp(document: Document): Observable<any>{
+		alert("service");
+		return this.http.post(`${this.baseUrl}/upd`, document);
 	}
 
 	deleteDocument(id: number): Observable<any> {
