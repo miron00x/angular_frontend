@@ -57,7 +57,6 @@ export class DocumentService {
 	}
 	
 	upDocProp(document: Document): Observable<any>{
-		alert("service");
 		return this.http.post(`${this.baseUrl}/upd`, document);
 	}
 

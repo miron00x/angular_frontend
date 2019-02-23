@@ -71,7 +71,6 @@ export class DocumentDetailsComponent implements OnInit {
 	}
 	
 	saveChange(){
-		alert("lol");
 		this.document.docName = this.f.name.value;
 		this.documentService.upDocProp(this.document)
 			.subscribe(
