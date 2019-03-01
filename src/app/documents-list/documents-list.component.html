@@ -6,6 +6,7 @@
 		<th scope="col" sortable="docName" (sort)="onSort($event)">Name</th>
 		<th scope="col">User</th>
 		<th scope="col" sortable="uploadDate" (sort)="onSort($event)">UploadDate</th>
+		<th scope="col" sortable="updateDate" (sort)="onSort($event)">UpdateDate</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,9 +15,12 @@
 			<td><ngb-highlight [result]="document.docName"></ngb-highlight></td>
 			<td><ngb-highlight [result]="document.user.userName"></ngb-highlight></td>
 			<td><ngb-highlight [result]="document.uploadDate | date"></ngb-highlight></td>
+			<td><ngb-highlight [result]="document.updateDate | date"></ngb-highlight></td>
 		</tr>
 	</tbody>
 </table>
+
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>
 
 <div class="d-flex justify-content-between p-2">
 	<ngb-pagination

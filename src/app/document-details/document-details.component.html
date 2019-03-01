@@ -17,3 +17,5 @@
 	<button type="button" class="btn btn-primary" (click)="updateDocument()">Update File</button>
 	<button type="button" class="btn btn-danger" (click)="deleteDocument()">Delete</button>
 </div>
+
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>

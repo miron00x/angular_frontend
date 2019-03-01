@@ -6,6 +6,8 @@ import { Document } from '../models/document';
 import { DocumentService } from '../services/document.service';
 import { UserService } from '../services/user.service';
 
+import { Observable } from 'rxjs';
+
 @Component({
 	selector: 'create-document',
 	templateUrl: './create-document.component.html',
@@ -14,6 +16,9 @@ import { UserService } from '../services/user.service';
 export class CreateDocumentComponent implements OnInit {
 	file: File;
 	file_id: number;
+	doc: Document;
+	message: String;
+	error: String;
 	
 	constructor(private documentService: DocumentService, 
 		private userService: UserService, 
@@ -28,14 +33,30 @@ export class CreateDocumentComponent implements OnInit {
 	onSubmit() {
 		if(!this.file_id){
 			this.documentService.createDocument(this.file)
-			.subscribe(data => console.log(data), error => console.log(error));
+			.subscribe((response: Response) => {
+				if (response.body) {
+					this.setMessage(response.body.docName);
+				} 
+			}, error => this.setError(error));
 		} else {
 			this.documentService.updateDocument(this.file_id, this.file)
-			.subscribe(data => console.log(data), error => console.log(error));
+			.subscribe((response: Response) => {
+				if (response.body) {
+					this.setMessage(response.body.docName);
+				} 
+			}, error => this.setError(error));
 		}
-		this.sleep(1500);
-		this.router.navigate(["/document"]);
 	}
+	
+	setMessage(message: string): void {
+		this.error = ``;
+		this.message = `Файл ${message} был успешно сохранен`;
+	}	
+	
+	setError(error: string): void {
+		this.message = ``;
+		this.error = `Произошла ошибка. ${error}`;
+	}	
 	
 	sleep(delay) {
         var start = new Date().getTime();

@@ -16,6 +16,7 @@ export class DocumentDetailsComponent implements OnInit {
 	document: Document;
 	change: boolean = false;
 	isValid: boolean = true;
+	error: String;
 
 	constructor(private documentService: DocumentService, 
 		private router: Router, 
@@ -23,12 +24,17 @@ export class DocumentDetailsComponent implements OnInit {
 		private fb: FormBuilder) 
 	{
 		documentService.getDocument(activateRoute.snapshot.params['id']).subscribe(data => {
+			console.log(data);
 			this.document = data;
 			this.document.uploadDate = data.uploadDate.substr(0, 19);
 			this.document.updateDate = data.updateDate.substr(0, 19);
 			this.initForm();
-		});
+		}, error => this.setError(error));
 	}
+	
+	setError(error: string): void {
+		this.error = `Произошла ошибка. ${error}`;
+	}	
 
 	ngOnInit() {
 	}

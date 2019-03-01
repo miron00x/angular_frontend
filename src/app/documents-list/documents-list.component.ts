@@ -21,6 +21,7 @@ export class DocumentsListComponent implements OnInit {
   total: number;
   page: number;
   pageSize: number;
+  error: String;
   
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
  
@@ -57,7 +58,7 @@ export class DocumentsListComponent implements OnInit {
           console.log(data);
           this.reloadData();
         },
-        error => console.log('ERROR: ' + error));
+        error => this.setError(error));
   }
  
   reloadData() {
@@ -70,8 +71,12 @@ export class DocumentsListComponent implements OnInit {
 		data => {
 			this.documents = data;
 		},
-		error => console.log('ERROR: ' + error));
-  }
+		error => this.setError(error));
+	}
+
+	setError(error: string): void {
+		this.error = `Произошла ошибка. ${error}`;
+	}	
   
   documentDetails(doc: Document){
 	this.router.navigate(["/details/", doc.id]);

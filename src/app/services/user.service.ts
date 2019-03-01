@@ -12,6 +12,6 @@ export class UserService {
     }
 	
 	getByName(name: String){
-        return this.http.get<User>(`http://localhost:8080/api/users/` + name);
+        return this.http.get<User>(`http://localhost:8080/api/users/${name}`);
 	}
 }

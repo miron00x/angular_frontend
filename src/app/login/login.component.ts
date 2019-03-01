@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 		
-		//if(this.returnUrl != '/') this.error = 'Please, login';
+		if(this.returnUrl != '/documents') this.error = 'Please, login';
     }
 
     get f() { return this.loginForm.controls; }
