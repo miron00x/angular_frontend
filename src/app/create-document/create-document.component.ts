@@ -33,16 +33,16 @@ export class CreateDocumentComponent implements OnInit {
 	onSubmit() {
 		if(!this.file_id){
 			this.documentService.createDocument(this.file)
-			.subscribe((response: Response) => {
-				if (response.body) {
-					this.setMessage(response.body.docName);
+			.subscribe((response: Document) => {
+				if (response) {
+					this.setMessage(response.docName);
 				} 
 			}, error => this.setError(error));
 		} else {
 			this.documentService.updateDocument(this.file_id, this.file)
-			.subscribe((response: Response) => {
-				if (response.body) {
-					this.setMessage(response.body.docName);
+			.subscribe((response: Document) => {
+				if (response) {
+					this.setMessage(response.docName);
 				} 
 			}, error => this.setError(error));
 		}
