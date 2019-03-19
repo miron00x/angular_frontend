@@ -2,14 +2,24 @@
 <div *ngIf="!file_id"><h3 class="text-primary text-center">Create Document</h3></div>
 <!--<div [hidden]="submitted" style="width: 300px;">-->
 <div>
-  <form (ngSubmit)="onSubmit()" #createForm="ngForm">
+  <form [formGroup]="createForm">
     <div class="form-group">
-	  <label for="uploadFile">File to upload: </label> 
-	  <input type="file" (change)="fileChange($event)" name="uploadFile" enctype="multipart/form-data">
+      <label for="uploadFile">File to upload: </label> 
+      <input type="file" (change)="fileChange($event)" formControlName="uploadFile" name="uploadFile" enctype="multipart/form-data">
+    </div>
+    <div class="form-group">  
+      <label for="name">File name: </label> 
+      <input type="text" formControlName="visibleName" name="visibleName" class="form-control" [ngClass]="{ 'is-invalid': f.visibleName.errors }">
+    </div>
+    <div class="form-group">
+      <label for="description">Description: </label> 
+      <textarea formControlName="description" name="description" class="form-control" [ngClass]="{ 'is-invalid': f.description.errors }"></textarea>
     </div>
  
-    <button type="submit" class="btn btn-success" (click)="createForm.reset()">Submit</button>
-	
+    <div class="form-group">
+      <button type="submit" class="btn btn-success" (click)=" onSubmit(); createForm.reset()">Submit</button>
+    </div>
+  
     <div *ngIf="message" class="alert alert-success">{{message}}</div>
     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
   </form>

@@ -22,6 +22,7 @@ export class DocumentsListComponent implements OnInit {
   page: number;
   pageSize: number;
   error: String;
+  img: String;
   
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
  
@@ -41,6 +42,7 @@ export class DocumentsListComponent implements OnInit {
 		header.direction = 'NULL';
 	  }
     });
+    this.img = "glyphicon glyphicon-triangle-bottom";
 
     this.documentService.sortColumn = column;
     this.documentService.sortDirection = direction;

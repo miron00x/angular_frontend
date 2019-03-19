@@ -41,7 +41,8 @@ export class DocumentDetailsComponent implements OnInit {
 	
 	initForm(){
 		this.DocEditForm = new FormGroup({
-			"name": new FormControl(this.document.docName, [Validators.required]),
+			"name": new FormControl(this.document.visibleName, [Validators.required]),
+			"description": new FormControl(this.document.description),
 			"user": new FormControl(this.document.user.userName),
 			"date": new FormControl(this.document.uploadDate),
 		});
@@ -77,7 +78,8 @@ export class DocumentDetailsComponent implements OnInit {
 	}
 	
 	saveChange(){
-		this.document.docName = this.f.name.value;
+		this.document.visibleName = this.f.name.value;
+		this.document.description = this.f.description.value;
 		this.documentService.upDocProp(this.document)
 			.subscribe(
 					data => {

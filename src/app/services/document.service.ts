@@ -33,25 +33,24 @@ export class DocumentService {
 		return this.http.get(`${this.baseUrl}/id/${id}`);
 	}
 
-	createDocument(file: File): Observable<any> {
+	createDocument(file: File, doc: Document): Observable<any> {
 		let formData = new FormData();
 		formData.append('uploadFile', file);
-		const req = new HttpRequest('POST', `${this.baseUrl}` + `/create`, formData);
+		formData.append('document', JSON.stringify(doc));
+		const req = new HttpRequest('POST', `${this.baseUrl}/create`, formData);
 		let result = this.http.request(req);
 		this.updateService();
 		return result;
 	}
 
-	updateDocument(id: number, file: File): Observable<any> {
+	updateDocument(doc: Document, file: File): Observable<any> {
 		let formData = new FormData();
 		formData.append('uploadFile', file);
-		const httpOptions = {
-			headers: new HttpHeaders({
-				'Accept': 'application/json'
-			})
-		};
-		const req = new HttpRequest('PUT', `${this.baseUrl}/${id}`, formData, httpOptions);
-		return this.http.request(req);
+		formData.append('document', JSON.stringify(doc));
+		const req = new HttpRequest('PUT', `${this.baseUrl}/${doc.id}`, formData);
+		let result = this.http.request(req);
+		this.updateService();
+		return result;
 	}
 	
 	upDocProp(document: Document): Observable<any>{

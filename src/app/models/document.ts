@@ -1,7 +1,8 @@
 import { User } from './user';
 export class Document {
     id: number;
-    docName: string;
+	visibleName: string;
+	description: string;
 	user: User;
     uploadDate: string;
 	updateDate: string;
@@ -11,6 +12,6 @@ export class Document {
 		this.user_id = user.id; 
 	}
 	getDocName(): string{
-		return this.docName;
+		return this.visibleName;
 	}
 }

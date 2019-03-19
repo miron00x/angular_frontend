@@ -1,18 +1,25 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <h3 class="text-primary text-center">Documents</h3>
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
 		<th scope="col">#</th>
-		<th scope="col" sortable="docName" (sort)="onSort($event)">Name</th>
+		<th scope="col" sortable="visibleName" (sort)="onSort($event)">
+			Name<i class="fa fa-fw fa-sort"></i>
+		</th>
 		<th scope="col">User</th>
-		<th scope="col" sortable="uploadDate" (sort)="onSort($event)">UploadDate</th>
-		<th scope="col" sortable="updateDate" (sort)="onSort($event)">UpdateDate</th>
+		<th scope="col" sortable="uploadDate" (sort)="onSort($event)">
+			UploadDate<i class="fa fa-fw fa-sort"></i>
+		</th>
+		<th scope="col" sortable="updateDate" (sort)="onSort($event)">
+			UpdateDate<i class="fa fa-fw fa-sort"></i>
+		</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr *ngFor="let document of documents" (click)="documentDetails(document)">
 			<th scope="row">{{ document.id }}</th>
-			<td><ngb-highlight [result]="document.docName"></ngb-highlight></td>
+			<td><ngb-highlight [result]="document.visibleName"></ngb-highlight></td>
 			<td><ngb-highlight [result]="document.user.userName"></ngb-highlight></td>
 			<td><ngb-highlight [result]="document.uploadDate | date"></ngb-highlight></td>
 			<td><ngb-highlight [result]="document.updateDate | date"></ngb-highlight></td>

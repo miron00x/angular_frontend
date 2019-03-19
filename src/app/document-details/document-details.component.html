@@ -4,6 +4,8 @@
 		<div class="form-group">
 			<label>Document name: </label>
 			<input class="form-control" type="text" formControlName="name" (ngModelChange)="onChange($event)" [ngClass]="{ 'is-invalid': f.name.errors }">
+			<label>Description: </label>
+			<textarea class="form-control" formControlName="description" (ngModelChange)="onChange($event)" [ngClass]="{ 'is-invalid': f.name.errors }"></textarea>
 			<label>User name: </label>
 			<input class="form-control" type="text" formControlName="user" disabled>
 			<label>Upload date: </label>
