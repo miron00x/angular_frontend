@@ -68,7 +68,7 @@ export class CreateDocumentComponent implements OnInit {
 	
 	setMessage(message: string): void {
 		this.error = ``;
-		this.message = `Файл ${message} был успешно сохранен`;
+		this.message = `Файл был успешно сохранен`;
 	}	
 	
 	setError(error: string): void {

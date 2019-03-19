@@ -3,10 +3,10 @@
 <!--<div [hidden]="submitted" style="width: 300px;">-->
 <div>
   <form [formGroup]="createForm">
-    <div class="form-group">
+    
       <label for="uploadFile">File to upload: </label> 
       <input type="file" (change)="fileChange($event)" formControlName="uploadFile" name="uploadFile" enctype="multipart/form-data">
-    </div>
+
     <div class="form-group">  
       <label for="name">File name: </label> 
       <input type="text" formControlName="visibleName" name="visibleName" class="form-control" [ngClass]="{ 'is-invalid': f.visibleName.errors }">

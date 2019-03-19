@@ -46,8 +46,8 @@ export class DocumentService {
 	updateDocument(doc: Document, file: File): Observable<any> {
 		let formData = new FormData();
 		formData.append('uploadFile', file);
-		formData.append('document', JSON.stringify(doc));
-		const req = new HttpRequest('PUT', `${this.baseUrl}/${doc.id}`, formData);
+		formData.append("document", JSON.stringify(doc));
+		const req = new HttpRequest('POST', `${this.baseUrl}/${doc.id}`, formData);
 		let result = this.http.request(req);
 		this.updateService();
 		return result;
